@@ -40,7 +40,7 @@ jobs:
         with:
           push: true
           context: .
-          file: ./Dockerfile
+          file: ./Mattermost/Dockerfile
           tags: ${{ steps.compute.outputs.image }}
 
       - name: Deploy to Google Cloud Run
