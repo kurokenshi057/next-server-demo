@@ -1,4 +1,4 @@
-name: Deploy Mattermost to Google Cloud Run
+name: Deploy mattermos to Google Cloud Run
 
 on:
   push:
@@ -21,17 +21,17 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCLOUD_AUTH }}
 
-      - name: Login to Google Container Registry
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          registry: gcr.io
+          registry: europe-west9-docker.pkg.dev
           username: _json_key
           password: ${{ secrets.GCLOUD_AUTH }}
 
       - name: Compute image
         id: compute
         run: |
-          image="gcr.io/${{ github.actor }}-mattermost:latest"
+          image="${{ vars.REGISTRY }}/${{ github.actor }}-app:latest"
           image_lower=$(echo $image | tr '[:upper:]' '[:lower:]')
           echo "image=$image_lower" >> "$GITHUB_OUTPUT"
 
@@ -46,14 +46,15 @@ jobs:
       - name: Deploy to Google Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
         with:
-          service: ${{ github.actor }}-mattermost
+          service: ${{ github.actor }}-app
           image: ${{ steps.compute.outputs.image }}
           region: us-central1
           project_id: mewo-devops-2024
 
-      - name: Set environment variables
+      - name: Set Mattermost environment variables
         run: |
           echo "MM_SQLSETTINGS_DRIVERNAME=postgres" >> $GITHUB_ENV
           echo "MM_SQLSETTINGS_DATASOURCE=postgres://cours_flauder:cours_flauder@35.239.186.51:5432/cours_flauder?sslmode=disable" >> $GITHUB_ENV
           echo "MM_SQLSETTINGS_ATRESTENCRYPTKEY=NDI5ZGY4NmEtMTM0YS00NGNjLTk2N2UtY2JhOGI2Yzc4NjMy" >> $GITHUB_ENV
+
 
