@@ -27,6 +27,6 @@ jobs:
           region: us-central1
           flags: --port=8065 --memory=1Gi
           env_vars: |
-            MM_SQLSETTINGS_DATASOURCE=postgres://user:password@ip/?sslmode=disable&connect_timeout=10
+            MM_SQLSETTINGS_DATASOURCE=postgres://cours_flauder:cours_flauder@35.239.186.51/?sslmode=disable&connect_timeout=10
 
 
