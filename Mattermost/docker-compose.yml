@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+
+  mattermost:
+    build: .
+    restart: always
+    ports:
+      - "8065:8065"
+    volumes:
+      - mattermost_data:/mattermost/data
+      - ./config.json:/mattermost/config.json
+    environment:
+      - MM_SQLSETTINGS_DRIVERNAME=postgres
+      - MM_SQLSETTINGS_DATASOURCE=postgres://cours_flauder:cours_flauder@35.239.186.51:5432/cours_flauder?sslmode=disable
+      - MM_SQLSETTINGS_ATRESTENCRYPTKEY=NDI5ZGY4NmEtMTM0YS00NGNjLTk2N2UtY2JhOGI2Yzc4NjMy
+
+volumes:
+  pgdata:
+  mattermost_data:
+
+
+
+
