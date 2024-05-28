@@ -29,5 +29,5 @@ EXPOSE 25565
 # Définir la commande pour exécuter le serveur Minecraft
 CMD ["java", "-Xmx1024M", "-Xms1024M", "-jar", "server.jar", "nogui"]
 
-# Fin du Dockerfile
+
 

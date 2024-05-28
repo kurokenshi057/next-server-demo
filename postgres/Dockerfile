@@ -10,9 +10,6 @@ RUN apt-get update && apt-get install -y nginx && apt-get clean
 # Supprimer les fichiers temporaires pour réduire la taille de l'image
 RUN rm -rf /var/lib/apt/lists/*
 
-# Copier les fichiers de configuration personnalisés (si nécessaire)
-# COPY ./my-custom-nginx.conf /etc/nginx/nginx.conf
-
 # Exposer le port 80 pour le trafic HTTP
 EXPOSE 80
 
