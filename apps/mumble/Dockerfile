@@ -31,5 +31,5 @@ EXPOSE 64738/tcp 64738/udp
 # Définir la commande par défaut pour démarrer Murmur
 CMD ["murmurd", "-fg", "-ini", "/etc/mumble-server.ini"]
 
-# Fin du Dockerfile
+
 
